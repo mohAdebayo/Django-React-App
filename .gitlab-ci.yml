@@ -10,7 +10,7 @@ test_demo:
   script:
     - echo "testing testing"
 
-test_react:
+.test_react:
   stage: test
   image: node:16.13.1-alpine
   script:
@@ -18,15 +18,15 @@ test_react:
     - yarn install
     - yarn run test
 
-.build_vuejs:
+.build_react:
   stage: build
   image: node:16.13.1-alpine
   script:
-    - cd subscription-app
+    - cd frontend
     - npm install
     - npm run build
 
-.build_django:
+build_django:
   stage: build-docker
   image: docker:20.10.16
   services:
@@ -36,8 +36,8 @@ test_react:
   before_script:
     - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
   script:
-    - docker build -t gerrome/crud-vuejs-django_backend:1.2 ./subscription-api
-    - docker push gerrome/crud-vuejs-django_backend:1.2
+    - docker build -t gerrome/real-estate_backend:1 ./backend
+    - docker push gerrome/real-estate_backend:1
 
 .build_vue-nginx:
   stage: build-docker
@@ -49,8 +49,8 @@ test_react:
   before_script:
     - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
   script:
-    - docker build -t gerrome/crud-vuejs-django_nginx:1.2 ./subscription-app
-    - docker push gerrome/crud-vuejs-django_nginx:1.2
+    - docker build -t gerrome/real-estate_nginx:1 ./frontend
+    - docker push gerrome/real-estate_nginx:1
 
 .deploy_test:
   stage: deploy
