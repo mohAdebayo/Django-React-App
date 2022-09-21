@@ -39,7 +39,7 @@ build_django:
     - docker build -t gerrome/real-estate_backend:1 ./backend
     - docker push gerrome/real-estate_backend:1
 
-.build_vue-nginx:
+build_react-nginx:
   stage: build-docker
   image: docker:20.10.16
   services:
