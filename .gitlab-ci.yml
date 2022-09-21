@@ -15,8 +15,8 @@ test_react:
   image: node:16.13.1-alpine
   script:
     - cd frontend
-    - npm install 
-    - npm run test
+    - yarn install
+    - yarn run test
 
 .build_vuejs:
   stage: build
