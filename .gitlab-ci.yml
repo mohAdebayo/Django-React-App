@@ -1,0 +1,65 @@
+stages:
+  - test
+  - build
+  - build-docker
+  - deploy
+    
+test_demo:
+  stage: test
+  image: node:16.13.1-alpine
+  script:
+    - echo "testing testing"
+
+test_react:
+  stage: test
+  image: node:16.13.1-alpine
+  script:
+    - cd frontend
+    - npm install 
+    - npm run test
+
+.build_vuejs:
+  stage: build
+  image: node:16.13.1-alpine
+  script:
+    - cd subscription-app
+    - npm install
+    - npm run build
+
+.build_django:
+  stage: build-docker
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+  before_script:
+    - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
+  script:
+    - docker build -t gerrome/crud-vuejs-django_backend:1.2 ./subscription-api
+    - docker push gerrome/crud-vuejs-django_backend:1.2
+
+.build_vue-nginx:
+  stage: build-docker
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+  before_script:
+    - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
+  script:
+    - docker build -t gerrome/crud-vuejs-django_nginx:1.2 ./subscription-app
+    - docker push gerrome/crud-vuejs-django_nginx:1.2
+
+.deploy_test:
+  stage: deploy
+  image: ubuntu
+  before_script:
+    - apt update && apt install -y openssh-client
+    - chmod 400 $SSH
+    - cat /etc/ssh/sshd_config
+  
+  script:
+    - ssh -o StrictHostKeyChecking=no -i $SSH victor@192.168.56.111 "cd K8s"
+
