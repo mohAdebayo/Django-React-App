@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
     backend:
-      image: gerrome/real-estate_backend:1
+      image: gerrome/django-react-app_backend:1
     #  build:
     #      context: ./backend
       volumes:
@@ -22,8 +22,8 @@ services:
         - POSTGRES_USER=postgres
         - POSTGRES_PASSWORD=postgres
 
-    nginx:
-      image: gerrome/real-estate_nginx:1
+    client:
+      image: gerrome/django-react-app_client:1
     #  build:
     #      context: ./frontend
       ports:
