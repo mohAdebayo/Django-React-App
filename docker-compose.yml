@@ -17,6 +17,8 @@ services:
       image: postgres:10.1-alpine
       volumes:
         - ./data/db:/var/lib/postgresql/data
+      expose:
+        - 5432
       environment:
         - POSTGRES_DB=realest_estate
         - POSTGRES_USER=postgres
