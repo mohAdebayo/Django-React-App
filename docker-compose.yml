@@ -28,6 +28,7 @@ services:
       image: gerrome/django-react-app_client:1
     #  build:
     #      context: ./frontend
+      env_file: ./.env
       ports:
         - 80:80
       volumes:
