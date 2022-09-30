@@ -8,7 +8,7 @@ COPY requirements.txt ./
 
 RUN apk add -u zlib-dev jpeg-dev gcc musl-dev
 
-#RUN pip3 install django-utils-six
+RUN apk add libpq-dev python3-dev
 
 RUN pip3 install gunicorn
 
