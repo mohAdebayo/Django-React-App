@@ -8,7 +8,7 @@ COPY requirements.txt ./
 
 RUN apk add -u zlib-dev jpeg-dev gcc musl-dev
 
-RUN pip3 install psycopg2-binary==2.8.6
+RUN pip3 install psycopg2-binary==2.8.4
 
 #RUN pip3 install django-utils-six
 
