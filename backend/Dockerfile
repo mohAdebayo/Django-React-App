@@ -16,7 +16,7 @@ RUN pip3 install gunicorn
 
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-RUN pip3 install --upgrade django-cors-headers
+#RUN pip3 install --upgrade django-cors-headers
 
 COPY wsgi-entrypoint.sh /
 
