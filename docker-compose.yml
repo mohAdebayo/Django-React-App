@@ -40,6 +40,8 @@ services:
     nginx:
       build:
         context: ./nginx
+      env_file:
+        - .env
       ports:
         - "80:80"
       depends_on:
