@@ -3,8 +3,8 @@ version: "3.3"
 services:
     backend:
       image: gerrome/django-react-app_backend:1
-      build:
-          context: ./backend
+    #  build:
+    #      context: ./backend
       volumes:
        # - ./backend:/app
         - static_volume:/app/staticfiles/
@@ -25,9 +25,9 @@ services:
         - POSTGRES_PASSWORD=postgres
 
     client:
-    #  image: gerrome/django-react-app_client:1
-      build:
-         context: ./frontend
+      image: gerrome/django-react-app_client:1
+    #  build:
+    #     context: ./frontend
       env_file: ./.env
       ports:
         - 3000:3000
