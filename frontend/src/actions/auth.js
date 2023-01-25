@@ -18,7 +18,7 @@ export const login = (email, password) => async dispatch => {
     const body = JSON.stringify({ email, password });
 
     try {
-        const res = await axios.post(`http://20.124.61.232/api/token`, body, config);
+        const res = await axios.post(`http://20.124.61.232/api/token/`, body, config);
 
         dispatch({
             type: LOGIN_SUCCESS,
@@ -45,7 +45,7 @@ export const signup = ({ name, email, password, password2 }) => async dispatch =
     const body = JSON.stringify({ name, email, password, password2 }); 
 
     try {
-        const res = await axios.post(`http://20.124.61.232/api/accounts/signup`, body, config);
+        const res = await axios.post(`http://20.124.61.232/api/accounts/signup/`, body, config);
 
         dispatch({
             type: SIGNUP_SUCCESS,
