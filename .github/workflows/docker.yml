@@ -35,4 +35,4 @@ jobs:
         with:
           context: ./frontend
           push: true
-          tags: gerrome/django-react-app_client:1.1
+          tags: gerrome/django-react-app_client:1.2
