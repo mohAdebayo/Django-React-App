@@ -33,7 +33,7 @@ const ListingForm = (props) => {
         };
 
         setLoading(true);
-        axios.post(`http://20.124.61.232/api/listings/search`, { sale_type, price, bedrooms, home_type, bathrooms, sqft, days_listed, has_photos, open_house, keywords }, config)
+        axios.post(`http://20.84.2.104/api/listings/search`, { sale_type, price, bedrooms, home_type, bathrooms, sqft, days_listed, has_photos, open_house, keywords }, config)
         .then(res => {
             setLoading(false);
             props.setListings(res.data);
