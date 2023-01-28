@@ -45,7 +45,7 @@ export const signup = ({ name, email, password, password2 }) => async dispatch =
     const body = JSON.stringify({ name, email, password, password2 }); 
 
     try {
-        const res = await axios.post(`http://victorsapp.20.253.112.1.nip.io/api/api/accounts/signup/`, body, config);
+        const res = await axios.post(`http://victorsapp.20.253.112.1.nip.io/api/api/accounts/signup`, body, config);
 
         dispatch({
             type: SIGNUP_SUCCESS,
