@@ -33,7 +33,7 @@ const ListingForm = (props) => {
         };
 
         setLoading(true);
-        axios.post(`http://victorsapp.20.84.2.104.nip.io/api/listings/search`, { sale_type, price, bedrooms, home_type, bathrooms, sqft, days_listed, has_photos, open_house, keywords }, config)
+        axios.post(`http://victorsapp.20.253.112.1.nip.io/api/api/listings/search`, { sale_type, price, bedrooms, home_type, bathrooms, sqft, days_listed, has_photos, open_house, keywords }, config)
         .then(res => {
             setLoading(false);
             props.setListings(res.data);
