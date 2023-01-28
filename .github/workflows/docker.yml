@@ -27,7 +27,7 @@ jobs:
         with:
           context: ./backend
           push: true
-          tags: gerrome/django-react-app_backend:1.1
+          tags: gerrome/django-react-app_backend:1.2
        
 
       - name: Build and push frontend
