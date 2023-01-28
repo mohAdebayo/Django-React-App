@@ -85,7 +85,7 @@ DATABASES = {
         'NAME': 'realest_estate',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': 'db',
+        'HOST': 'pgdb',
         'PORT': '5432',
     }
 }
