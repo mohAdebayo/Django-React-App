@@ -30,13 +30,13 @@ stages:
     steps:
     - task: CmdLine@2
       inputs:
-        script: 'apt install -y curl'
+        script: 'sudo apt install -y curl'
     - task: CmdLine@2
       inputs:
         script: 'curl -fsSL https://deb.nodesource.com/setup_16.x'
     - task: CmdLine@2
       inputs:
-        script: 'apt install -y nodejs'                
+        script: 'sudo apt install -y nodejs'                
     
     - task: CmdLine@2
       inputs:
