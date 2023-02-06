@@ -28,11 +28,13 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - task: CmdLine@2
+    - task: Npm@1
       inputs:
-        script: 'pip install --no-cache-dir -r backend/requirements.txt'
-    - task: PythonScript@0
+        command: 'install'
+        workingDir: 'frontend'
+    - task: Npm@1
       inputs:
-        scriptSource: 'filePath'
-        scriptPath: 'backend/accounts/tests.py'
+        command: 'custom'
+        workingDir: 'frontend'
+        customCommand: 'test'
 
