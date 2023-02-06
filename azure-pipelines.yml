@@ -1,0 +1,40 @@
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- main
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: 'c1ae1d8e-1591-4adc-868f-940ec1ccd5ab'
+  imageRepository: 'gerromesiegerdjangoreactapp'
+  containerRegistry: 'dockerhub1.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/backend/Dockerfile'
+  tag: '$(Build.BuildId)'
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+stages:
+- stage: Test-Microservices
+  displayName: Test the django & the react applications 
+  jobs:
+  - job: Unit Test
+    displayName: Unit Test
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: Npm@1
+      inputs:
+        command: 'install'
+        workingDir: 'frontend'
+    - task: Npm@1
+      inputs:
+        command: 'custom'
+        workingDir: 'frontend'
+        customCommand: 'test'
+
