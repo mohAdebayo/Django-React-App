@@ -30,6 +30,6 @@ stages:
     steps:
     - task: PythonScript@0
       inputs:
-        scriptSource: 'test.py'
+        scriptSource: 'filePath'
         scriptPath: 'backend/accounts'
-
+        arguments: 'test.py'
