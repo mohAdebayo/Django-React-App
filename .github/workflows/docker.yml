@@ -1,4 +1,4 @@
-name: Docker
+name: Test
 
 on:
   push:
@@ -16,14 +16,14 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: '16.13.1'
+          node-version: '13.12.0'
           
       - name: Install Dependencies
         run: cd ./frontend && npm install
       
       - name: Install Dependencies
         run: cd ./frontend && npm test        
-        
+  
   build-docker:
     runs-on: ubuntu-latest
     steps:
@@ -53,3 +53,4 @@ jobs:
           context: ./frontend
           push: true
           tags: gerrome/django-react-app_client:1.1
+    needs: test
