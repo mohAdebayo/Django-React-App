@@ -31,5 +31,5 @@ stages:
     - task: PythonScript@0
       inputs:
         scriptSource: 'filePath'
-        scriptPath: 'backend/accounts/test.py'
+        scriptPath: 'backend/accounts/tests.py'
 
