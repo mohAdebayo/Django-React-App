@@ -30,7 +30,7 @@ stages:
     steps:
     - task: CmdLine@2
       inputs:
-        script: 'pip install --no-cache-dir -r backend/requirments.txt'
+        script: 'pip install --no-cache-dir -r backend/requirements.txt'
     - task: PythonScript@0
       inputs:
         scriptSource: 'filePath'
