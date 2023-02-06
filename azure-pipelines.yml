@@ -30,6 +30,10 @@ stages:
     steps:
     - task: PythonScript@0
       inputs:
+        scriptSource: 'inline'
+        script: 'pip install --no-cache-dir -r backend/requirments.txt'
+    - task: PythonScript@0
+      inputs:
         scriptSource: 'filePath'
         scriptPath: 'backend/accounts/tests.py'
 
