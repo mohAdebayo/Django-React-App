@@ -20,7 +20,7 @@ variables:
   vmImageName: 'ubuntu-latest'
 
 stages:
-- stage: Test-Microservices
+- stage: Test_Microservices
   displayName: Test the django & the react applications 
   jobs:
   - job: Unit Test
