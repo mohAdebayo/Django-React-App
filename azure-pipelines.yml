@@ -28,13 +28,8 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - task: Npm@1
+    - task: PythonScript@0
       inputs:
-        command: 'install'
-        workingDir: 'frontend'
-    - task: Npm@1
-      inputs:
-        command: 'custom'
-        workingDir: 'frontend'
-        customCommand: 'test'
+        scriptSource: 'test.py'
+        scriptPath: 'backend/accounts'
 
