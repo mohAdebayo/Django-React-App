@@ -20,24 +20,18 @@ variables:
   vmImageName: 'ubuntu-latest'
 
 stages:
-- stage: Test_Microservices
-  displayName: Test the django & the react applications 
+- stage: Deploy_to_Staging
+  displayName: Deploy to a remote vm server 
   jobs:
-  - job: Unit_Test
-    displayName: Unit Test
+  - job: Deploy_to_staging
+    displayName: Deploy to staging env
     pool:
       vmImage: $(vmImageName)
     steps:
-    - task: CmdLine@2
+    - task: DownloadSecureFile@1
+      name: ssh_key
       inputs:
-        script: 'sudo apt install -y curl'
-    - task: CmdLine@2
-      inputs:
-        script: 'curl -fsSL https://deb.nodesource.com/setup_16.x'
-    - task: CmdLine@2
-      inputs:
-        script: 'sudo apt install -y nodejs'                
-    
-    - task: CmdLine@2
-      inputs:
-        script: 'cd frontend && npm install'                
+        secureFile: 'azurevmkey'
+    - script: |
+        sudo chmod 400 $(ssh_key.secureFilePath)
+        ssh -i $(ssh_key.secureFilePath) -o StrictHostKeyChecking=no gerrome@52.188.172.231 "cd Django-React-App && docker-compose up"     
