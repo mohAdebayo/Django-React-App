@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-python@v4.5.0
         
       - name: Run tests
-        run: python ./backend/accoounts/tests.py
+        run: python ./backend/accounts/tests.py
   
   build-docker:
     runs-on: ubuntu-latest
