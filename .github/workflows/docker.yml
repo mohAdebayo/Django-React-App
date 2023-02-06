@@ -7,6 +7,12 @@ on:
     branches: [ main ]
     
 jobs:
+  pre-test: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: tets
+        run: echo "test"  
+  
   test: 
     runs-on: ubuntu-latest
     steps:
@@ -51,4 +57,5 @@ jobs:
           context: ./frontend
           push: true
           tags: gerrome/django-react-app_client:1.1
-    needs: test
+    needs: [test, pre-test]
+    if: steps.approval.outputs.approved == 'true'
