@@ -28,9 +28,8 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - task: PythonScript@0
+    - task: CmdLine@2
       inputs:
-        scriptSource: 'inline'
         script: 'pip install --no-cache-dir -r backend/requirments.txt'
     - task: PythonScript@0
       inputs:
