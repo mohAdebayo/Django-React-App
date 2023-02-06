@@ -13,16 +13,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         
-      - name: Setup Node
-        uses: actions/setup-node@v1
+      - name: Setup Python
+        uses: actions/setup-python@v4.5.0
         with:
-          node-version: '13.12.0'
+          python-version: 3.12.0
           
-      - name: Install Dependencies
-        run: cd ./frontend && npm install
-      
-      - name: Install Dependencies
-        run: cd ./frontend && npm test        
+      - name: Run tests
+        run: python ./backend/accoounts/tests.py
   
   build-docker:
     runs-on: ubuntu-latest
