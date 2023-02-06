@@ -7,7 +7,17 @@ on:
     branches: [ main ]
     
 jobs:
-  docker:
+  test: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.13.1'
+      - name: Install Dependencies
+        run: cd frontend && npm install     
+        
+  build-docker:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
