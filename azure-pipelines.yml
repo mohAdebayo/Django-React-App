@@ -28,13 +28,16 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - task: Npm@1
+    - task: CmdLine@2
       inputs:
-        command: 'ci'
-        workingDir: 'frontend'
-    - task: Npm@1
+        script: 'apt install -y curl'
+    - task: CmdLine@2
       inputs:
-        command: 'custom'
-        workingDir: 'frontend'
-        customCommand: 'test'
-
+        script: 'curl -fsSL https://deb.nodesource.com/setup_16.x'
+    - task: CmdLine@2
+      inputs:
+        script: 'apt install -y nodejs'                
+    
+    - task: CmdLine@2
+      inputs:
+        script: 'cd frontend && npm install'                
