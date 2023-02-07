@@ -2,6 +2,11 @@ pipeline {
     agent any
     stages {        
         stage('Build Images') {           
+            agent {
+                docker {
+                    image 'docker:23-dind'
+                }
+            }
             steps {
                 sh 'cd backend && docker build -t gerrome/django-react-app_backend:1 .'
                 sh 'cd frontend && docker build -t gerrome/django-react-app_client:1 .'
