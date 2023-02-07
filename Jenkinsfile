@@ -19,7 +19,7 @@ pipeline {
             }             
             steps {
                 sh 'cd backend/accounts'
-                sh 'python test.py'           
+                sh 'python tests.py'           
             }
         }        
         stage('Build Images') {
