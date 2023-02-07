@@ -4,7 +4,7 @@ pipeline {
         stage('Build Images') {           
             agent {
                 docker {
-                    image 'docker'
+                    image 'jenkins/jnlp-slave'
                 }
             }
             steps {
