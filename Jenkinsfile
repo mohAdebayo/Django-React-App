@@ -4,7 +4,7 @@ pipeline {
         stage('Build Images') {           
             agent {
                 docker {
-                    image 'docker:23-dind-rootless'
+                    image 'docker'
                 }
             }
             steps {
