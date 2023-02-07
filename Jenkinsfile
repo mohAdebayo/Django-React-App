@@ -8,9 +8,8 @@ pipeline {
                  }
             }            
             steps {
-                sh 'cd frontend-folder'
-                sh 'npm install'
-                sh 'npm test'              
+                sh 'cd frontend'
+                sh 'npm install'            
             }
         }
         stage('Test-Backend') {
@@ -20,7 +19,7 @@ pipeline {
                 }
             }             
             steps {
-                sh 'cd backend-folder'
+                sh 'cd backend/accounts'
                 sh 'python test.py'           
             }
         }        
@@ -31,8 +30,8 @@ pipeline {
                 }
             }               
             steps {
-                sh 'cd backend-folder && docker build -t backend-image:tag .'
-                sh 'cd frontend-folder && docker build -t frontend-image:tag .'
+                sh 'cd backend && docker build -t gerrome/django-react-app_backend:1 .'
+                sh 'cd frontend && docker build -t gerrome/django-react-app_client:1 .'
                 withCredentials([
                     usernamePassword(credentials: 'dockerhub', usernameVariable: USER, passwordVariable: PWD)
                 ])
@@ -48,27 +47,16 @@ pipeline {
                 }
             }             
             steps {
-                withCredentials([file(credentialsId: 'server_ssh_key', fileVariable: 'KEYFILE')]) {
-                    sshagent(credentials: ['server_ssh_key']) {
-                        sh 'ssh -i ${KEYFILE} -o StrictHostKeyChecking=no user@remote_server "cd project_directory && docker-compose up -d"'
-                    }
+                    publishOverSSH(
+                        target: '52.188.172.231',
+                        username: 'gerrome',
+                        credentialsId: 'server_ssh_key',
+                        sourceFiles: 'Django-React-App',
+                        execCommand: 'docker-compose up -d'
+                )
                 }
             }
-        }
-        stage('Deploy to Production') {
-            agent {
-                docker {
-                    image 'ubuntu:latest'
-                }
-            }           
-            steps {
-                withCredentials([file(credentialsId: 'server_ssh_key', fileVariable: 'KEYFILE')]) {
-                    sshagent(credentials: ['server_ssh_key']) {
-                        sh 'ssh -i ${KEYFILE} -o StrictHostKeyChecking=no user@remote_server "cd project_directory && docker-compose up -d"'
-                    }
-                }
-            }
-        }        
+        }       
     }
 }
   
