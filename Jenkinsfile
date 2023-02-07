@@ -1,14 +1,14 @@
 pipeline {
     agent {
-        docker {
-           image 'ubuntu:latest'
+        node-template {
+           image 'node:13.12.0-alpine'
        }
      }  
     stages {
         stage('Test-Frontend') {
             agent {
-                docker {
-                    image 'node:16.13.1-alpine'
+                node-template {
+                    image 'node:13.12.0-alpine'
                 }
             }            
             steps {
