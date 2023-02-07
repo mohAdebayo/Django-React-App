@@ -8,7 +8,7 @@ pipeline {
                 }
             }               
             steps {
-                sh 'sudo chmod 666 /var/run/docker.sock'
+                sh 'chmod 666 /var/run/docker.sock'
                 sh 'cd backend && docker build -t gerrome/django-react-app_backend:1 .'
                 sh 'cd frontend && docker build -t gerrome/django-react-app_client:1 .'
                 withCredentials([
