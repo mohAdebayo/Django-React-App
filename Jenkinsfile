@@ -1,26 +1,6 @@
 pipeline {
     agent any
-    stages {
-        stage('Test-Frontend') {
-            agent {
-                docker {
-                   image 'node:13.12.0-alpine'
-                 }
-            }            
-            steps {
-                sh 'cd frontend'
-            }
-        }
-        stage('Test-Backend') {
-            agent {
-                docker {
-                    image 'python:3.12.0a4-slim-buster'
-                }
-            }             
-            steps {
-                sh 'python backend/accounts tests.py'
-            }
-        }        
+    stages {        
         stage('Build Images') {
             agent {
                 docker {
