@@ -57,5 +57,3 @@ jobs:
           context: ./frontend
           push: true
           tags: gerrome/django-react-app_client:1.1
-    needs: [test, pre-test]
-    if: steps.approval.outputs.approved == 'true'
