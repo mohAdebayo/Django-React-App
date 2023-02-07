@@ -1,15 +1,16 @@
 pipeline {
     agent {
-        node-template {
+        docker {
            image 'node:13.12.0-alpine'
+           label 'node-template' 
        }
      }  
     stages {
         stage('Test-Frontend') {
             agent {
-                node-template {
-                    image 'node:13.12.0-alpine'
-                }
+                docker {
+                   image 'node:13.12.0-alpine'
+                   label 'node-template'                 }
             }            
             steps {
                 sh 'cd frontend-folder'
