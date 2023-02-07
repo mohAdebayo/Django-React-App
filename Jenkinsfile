@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        any
-        }    
+    agent any
     stages {
         stage('Test-Frontend') {
             agent {
@@ -58,14 +56,14 @@ pipeline {
             }
         }
         stage('Deploy to Production') {
-            triggers {
-                cron "0 0 * * *"
-            }
             agent {
                 docker {
                     image 'ubuntu:latest'
                 }
-            }             
+            }    
+            triggers {
+                cron "0 0 * * *"
+            }         
             steps {
                 withCredentials([file(credentialsId: 'server_ssh_key', fileVariable: 'KEYFILE')]) {
                     sshagent(credentials: ['server_ssh_key']) {
