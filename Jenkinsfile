@@ -1,14 +1,9 @@
 pipeline {
     agent any
     stages {        
-        stage('Build Images') {
-            agent {
-                docker {
-                    image 'docker:20.10.16'
-                }
-            }               
+        stage('Build Images') {           
             steps {
-                sh 'chmod 666 /var/run/docker.sock'
+                sh 'sudo chmod 666 /var/run/docker.sock'
                 sh 'cd backend && docker build -t gerrome/django-react-app_backend:1 .'
                 sh 'cd frontend && docker build -t gerrome/django-react-app_client:1 .'
                 withCredentials([
