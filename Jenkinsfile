@@ -9,7 +9,6 @@ pipeline {
             }            
             steps {
                 sh 'cd frontend'
-                sh 'npm install'            
             }
         }
         stage('Test-Backend') {
