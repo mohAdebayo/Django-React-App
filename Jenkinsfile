@@ -4,7 +4,7 @@ pipeline {
            image 'node:13.12.0-alpine'
            template {
                 label 'node-template'
-         }   {
+           }   }
      }  
     stages {
         stage('Test-Frontend') {
