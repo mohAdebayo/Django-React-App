@@ -2,16 +2,8 @@ pipeline {
     agent any
     stages {
         stage('Build Images') {
-            agent {
-                docker {
-                    image 'ubuntu:latest'
-                }
             }               
             steps {
-                sh 'sudo apt update -y'                
-                sh 'sudo apt install docker.io -y'
-                sh 'sudo apt install docker-compose -y'                
-                sh 'sudo chmod 666 /var/run/docker.sock'
                 sh 'cd backend && docker build -t django-react-app_backend:1 .'
                 sh 'cd frontend && docker build -t django-react-app_client:1 .'
                 withCredentials([
