@@ -4,7 +4,7 @@ pipeline {
         stage('Build Images') {
             agent {
                 docker {
-                    image 'docker:20.10.16'
+                    image 'ubuntu:latest'
                 }
             }               
             steps {
