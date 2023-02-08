@@ -1,8 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Build Images') {
-            }               
+        stage('Build Images') {             
             steps {
                 sh 'cd backend && docker build -t django-react-app_backend:1 .'
                 sh 'cd frontend && docker build -t django-react-app_client:1 .'
@@ -11,7 +10,7 @@ pipeline {
                 ])
                 sh "docker login -u ${USER} -p ${PWD} && docker push django-react-app_backend:1" 
                 sh "docker login -u ${USER} -p ${PWD} && docker push django-react-app_client:1"                    }                
-                       
+        }   
         }          
         stage('Deploy to Staging') {
             steps{
