@@ -8,7 +8,7 @@ pipeline {
                 }
             }               
             steps {
-                sh 'docker version'
+                sh 'apk add docker.io -y'
                 sh 'cd backend && docker build -t django-react-app_backend:1 .'
                 sh 'cd frontend && docker build -t django-react-app_client:1 .'
                 withCredentials([
