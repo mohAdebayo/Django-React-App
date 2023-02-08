@@ -4,11 +4,13 @@ pipeline {
         stage('Build Images') {
             agent {
                 docker {
-                    image 'docker:20.10.23-dind'
+                    image 'ubuntu:latest'
                 }
             }               
             steps {
-                sh 'apk add docker.io -f'
+                sh 'apt update -y'                
+                sh 'apt install docker.io -y'
+                sh 'apt install docker-compose -y'                
                 sh 'chmod 666 /var/run/docker.sock'
                 sh 'cd backend && docker build -t django-react-app_backend:1 .'
                 sh 'cd frontend && docker build -t django-react-app_client:1 .'
