@@ -8,7 +8,8 @@ pipeline {
                 }
             }               
             steps {
-                sh 'apk add docker.io -y'
+                sh 'apk add docker.io -f'
+                sh 'chmod 666 /var/run/docker.sock'
                 sh 'cd backend && docker build -t django-react-app_backend:1 .'
                 sh 'cd frontend && docker build -t django-react-app_client:1 .'
                 withCredentials([
