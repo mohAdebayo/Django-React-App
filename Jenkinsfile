@@ -8,7 +8,7 @@ pipeline {
                 }
             }               
             steps {
-                sh 'chmod 666 /var/run/docker.sock'
+                sh 'docker version'
                 sh 'cd backend && docker build -t django-react-app_backend:1 .'
                 sh 'cd frontend && docker build -t django-react-app_client:1 .'
                 withCredentials([
