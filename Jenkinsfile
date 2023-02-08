@@ -1,23 +1,6 @@
 pipeline {
     agent any
     stages {        
-        stage('Build Images') {           
-            agent {
-                docker {
-                    image 'jenkins/jnlp-slave'
-                }
-            }
-            steps {
-                sh 'cd backend && docker build -t gerrome/django-react-app_backend:1 .'
-                sh 'cd frontend && docker build -t gerrome/django-react-app_client:1 .'
-                withCredentials([
-                    usernamePassword(credentials: 'dockerhub', usernameVariable: USER, passwordVariable: PWD)
-                ])
-                sh "docker login -u ${USER} -p ${PWD} && docker push backend-image:tag" 
-                sh "docker login -u ${USER} -p ${PWD} && docker push frontend-image:tag"                    }                
-                       
-        }  
-
         stage('Deploy to Staging') {
             agent {
                 docker {
