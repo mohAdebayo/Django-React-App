@@ -18,7 +18,7 @@ export const login = (email, password) => async dispatch => {
     const body = JSON.stringify({ email, password });
 
     try {
-        const res = await axios.post(`http://victor.20.84.39.184.nip.io/api/token/`, body, config);
+        const res = await axios.post(`http://app.ifahvictor.com/api/token/`, body, config);
 
         dispatch({
             type: LOGIN_SUCCESS,
@@ -45,7 +45,7 @@ export const signup = ({ name, email, password, password2 }) => async dispatch =
     const body = JSON.stringify({ name, email, password, password2 }); 
 
     try {
-        const res = await axios.post(`http://victor.20.84.39.184.nip.io/api/accounts/signup`, body, config);
+        const res = await axios.post(`http://app.ifahvictor.com/api/accounts/signup`, body, config);
 
         dispatch({
             type: SIGNUP_SUCCESS,
