@@ -9,7 +9,7 @@ resources:
 - repo: self
 
 variables:
-  # Container registry service connection established daring pipeline creation
+  # Container registry service connection established darinfksllng pipeline creation
   dockerRegistryServiceConnection: 'c1ae1d8e-1591-4adc-868f-940ec1ccd5ab'
   imageRepository: 'gerromesiegerdjangoreactapp'
   containerRegistry: 'dockerhub1.azurecr.io'
