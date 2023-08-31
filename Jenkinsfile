@@ -1,1 +1,2 @@
 pipeline
+stage 1
