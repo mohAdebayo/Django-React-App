@@ -1,2 +1,1 @@
 pipeline
-Another pipeline
